@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="49px" viewBox="0 0 41 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>New-profile</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="20.5" cy="20.5" r="20.5"></circle>
+        <filter x="-30.5%" y="-28.0%" width="161.0%" height="161.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.925490196   0 0 0 0 0.250980392   0 0 0 0 0.478431373  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="New-profile">
+            <g id="colors/blue" transform="translate(0.000000, 4.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+                    <use fill="#EC407A" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <g id="colors/red" mask="url(#mask-2)" fill="#EC407A">
+                    <g transform="translate(-165.000000, -30.000000)" id="Rectangle-10-Copy-6">
+                        <rect x="0" y="0" width="372" height="100"></rect>
+                    </g>
+                </g>
+            </g>
+            <path d="M19.214,32.406 C19.214,32.826 19.592,33.162 20.012,33.162 L21.188,33.162 C21.608,33.162 21.986,32.826 21.986,32.406 L21.986,25.812 L28.622,25.812 C29.042,25.812 29.378,25.434 29.378,25.014 L29.378,23.838 C29.378,23.418 29.042,23.04 28.622,23.04 L21.986,23.04 L21.986,16.404 C21.986,15.984 21.608,15.648 21.188,15.648 L20.012,15.648 C19.592,15.648 19.214,15.984 19.214,16.404 L19.214,23.04 L12.62,23.04 C12.2,23.04 11.822,23.418 11.822,23.838 L11.822,25.014 C11.822,25.434 12.2,25.812 12.62,25.812 L19.214,25.812 L19.214,32.406 Z" id="+" fill="#FFFFFF"></path>
+        </g>
+    </g>
+</svg>
