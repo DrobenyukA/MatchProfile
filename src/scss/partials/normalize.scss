@@ -1,0 +1,10 @@
+*{
+  box-sizing: border-box;
+}
+
+html{
+  font-family: sans-serif;
+  font-size: 14px;
+  // prevent horizontal scrolls
+  overflow-x: hidden;
+}

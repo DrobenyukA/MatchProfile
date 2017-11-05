@@ -58,5 +58,7 @@ typings/
 .env
 
 # Webstorm
-
 .idea/
+
+#buld files
+/dist

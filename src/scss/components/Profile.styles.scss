@@ -1,0 +1,120 @@
+.profile{
+  position: relative;
+  width: 100%;
+  max-width: 500-(15+5)*2px;
+  margin: 5px 5px 15px 5px;
+  background: #fafafa;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 300ms;
+  user-select: none;
+  overflow: hidden;
+
+  &:after,
+  .priority{
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+    vertical-align: middle;
+    z-index:5;
+  }
+
+  &:after{
+    content: "";
+    width:21px;
+    height:21px;
+    background-color: #ccc;
+  }
+
+  &.placeholder{
+    background: #ccc;
+    color: transparent;
+    box-shadow: inset 2px 2px 0 transparentize(#000, .95),
+    inset -2px -2px 0 transparentize(#000, .95);
+    .priority{
+      color: #000;
+      box-shadow: 2px 2px 2px transparentize(#000, .95),
+      -2px -2px 2px transparentize(#000, .95);
+    }
+    svg{
+      visibility: hidden;
+    }
+  }
+
+  &.preview{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 2px 6px transparentize(#000, .85),
+    0 -2px -2px 6px transparentize(#000, .85);
+    z-index:500;
+    &:after{
+      content: none;
+    }
+  }
+
+  h4{
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  p{
+    margin:0;
+  }
+
+  .wrapper{
+    display: flex;
+    height: 60px;
+    padding: 5px 15px 5px 25px;
+    align-items:center;
+    justify-content: space-around;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .content{
+    flex-grow: 4;
+  }
+
+  .control{
+    flex-grow:1;
+    text-align: right;
+    svg{
+      width:20px;
+      height:16px;
+      cursor: pointer;
+      fill: #BEBEBE;
+      transition: fill 300ms;
+      &:hover{
+        fill: darken(#BEBEBE, 15%);
+      }
+    }
+  }
+
+  .priority{
+    background-color: #fff;
+    z-index:10;
+  }
+
+
+}
+
+.paused{
+
+  .priority{
+    display: none;
+  }
+
+  .profile:after{
+    content: none;
+  }
+
+}

@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {DragLayer} from "react-dnd";
 
+import BurgerSVG from "../../assets/dragger.svg";
+
 function collect (monitor) {
     const item = monitor.getItem();
     return {
@@ -32,9 +34,6 @@ class Draggable extends Component {
         const transform = `translate(${x}px, ${y}px)`;
 
         return {
-            height:"100px",
-            background: "pink",
-            border:"1px solid red",
             pointerEvents: 'none',
             transform: transform,
             WebkitTransform: transform
@@ -42,15 +41,22 @@ class Draggable extends Component {
     }
 
     render(){
-        const {isDragging, currentOffset, title, description, category} = this.props;
+        const {isDragging, currentOffset, title, description} = this.props;
         if (!isDragging) return null;
         return (
             <div
-                className="item preview"
+                className="profile preview"
                 style={this.getItemStyles(currentOffset)}
             >
-                <h4>{title} <em>{category}</em></h4>
-                <p>{description}</p>
+                <div className="wrapper">
+                    <div className="content">
+                        <h4>{title}</h4>
+                        <p>{description}</p>
+                    </div>
+                    <div className="control">
+                        <BurgerSVG />
+                    </div>
+                </div>
             </div>
         );
     }

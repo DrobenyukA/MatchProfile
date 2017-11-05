@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
 import { DragDropContext } from 'react-dnd';
-import { default as TouchBackend } from 'react-dnd-touch-backend';
-import HTML5Backend from 'react-dnd-html5-backend';
+import TouchBackend from 'react-dnd-touch-backend';
 
+import MOCKS from "../mocks";
 import PROFILES from "../constants/profiles.constants";
-
 import Profile from "../components/profile.component";
 import Draggable from "../components/draggable.component";
 
@@ -17,56 +16,32 @@ export default class Container extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            [PROFILES.PAUSED]: [
-                {
-                    id: 4,
-                    type: "Designer",
-                    tags: ["Hyper Island", "Female"]
-
-                },
-                {
-                    id: 5,
-                    type: "Surprise me",
-                    tags: null
-                },
-                {
-                    id: 6,
-                    type: "Growth hacker",
-                    tags: ["Startup", "25-35 years old"]
-                }
-            ],
-            [PROFILES.ACTIVE]: [
-                {
-                    id: 1,
-                    type: "Internations",
-                    tags: [],
-                },
-                {
-                    id: 2,
-                    type: "Designer",
-                    tags: ["Freelancer", "Female"],
-                },
-                {
-                    id: 3,
-                    type: "Product owner",
-                    tags: ["Startup", "Corporate"],
-                }
-            ]
+            [PROFILES.PAUSED]: MOCKS.PAUSED,
+            [PROFILES.ACTIVE]: MOCKS.ACTIVE
 
         }
     }
-    addProfile = () => {
-      console.log("Add profile");
-    };
+    addProfile = () => console.log("Add profile");
 
-    submitProfile = () => {
-        console.log("Submit profile");
-    };
+    submitProfile = () => console.log("Submit profile");
 
-    getProfileDescription(tags){
-        if (Array.isArray(tags)) return tags.join(", ");
-        return "(An unexpected match is chosen)";
+    getProfiles(profiles, category){
+        return profiles.map((item, index) => (
+                <Profile
+                    key={item.id}
+                    id={item.id}
+                    index={index}
+                    title={item.type}
+                    length={profiles.length}
+                    category={category}
+                    onMove={this.moveProfile}
+                    description={this.getProfileDescription(item.tags)}
+                />
+            )
+        )
     }
+
+    getProfileDescription = tags => Array.isArray(tags) ? tags.join(", ") : "(An unexpected match is chosen)";
 
     updateCategory(dragged, hovered, profile) {
         this.setState(
@@ -78,9 +53,9 @@ export default class Container extends Component {
         )
     }
 
-    changeCategory(dragged, hovered, profile){
+    changeCategory(dragged, hovered, profile) {
         const oldState = this.state[hovered.category];
-        /** Depend on category we will inject our profile into stat or end of the list  **/
+        /** Depend on category it will inject our profile into stat or end of the list  **/
         const newState = dragged.category === PROFILES.ACTIVE ? [profile, ...oldState] : [...oldState, profile];
         this.setState(
             update(this.state, {
@@ -93,8 +68,7 @@ export default class Container extends Component {
                     $set: newState,
                 }
             }),
-        )
-
+        );
     }
 
     moveProfile = (dragged, hovered) => {
@@ -108,49 +82,28 @@ export default class Container extends Component {
     };
 
     render() {
-        const { [PROFILES.PAUSED]:paused, [PROFILES.ACTIVE]:active } = this.state;
+        const { [PROFILES.PAUSED]:inPull, [PROFILES.ACTIVE]:prioritized } = this.state;
         return (
-            <div className="container">
-                <h1>Match profile</h1>
-                <button onClick={this.addProfile}>Add Profile</button>
-                <div className="profiles prioritized">
-                    Prioritized Profiles
-                    {
-                        active.map((item, index) => (
-                            <Profile
-                                key={item.id}
-                                id={item.id}
-                                index={index}
-                                title={item.type}
-                                length={active.length}
-                                category={PROFILES.ACTIVE}
-                                onMove={this.moveProfile}
-                                description={this.getProfileDescription(item.tags)}
-                            />
-                            )
-                        )
-                    }
+            <div className="app-container">
+                <header>
+                    <h1>Match profile</h1>
+                    <div className="control">
+                        <button className="btn btn-add" onClick={this.addProfile}>
+                            +
+                        </button>
+                    </div>
+                </header>
+                <div className="profiles">
+                    { this.getProfiles(prioritized, PROFILES.ACTIVE)}
                 </div>
                 <hr/>
-                <div className="profiles">
-                    Rest Profiles
-                    {
-                        paused.map((item, index) => (
-                            <Profile
-                                key={item.id}
-                                id={item.id}
-                                index={index}
-                                title={item.type}
-                                category={PROFILES.PAUSED}
-                                onMove={this.moveProfile}
-                                description={this.getProfileDescription(item.tags)}
-                            />
-                            )
-                        )
-                    }
+                <div className="profiles paused">
+                    { this.getProfiles(inPull, PROFILES.PAUSED)}
                 </div>
-                <button onClick={this.submitProfile}>Submit profile</button>
-                <Draggable/>
+                <button className="btn btn-submit" onClick={this.submitProfile}>
+                    Submit profile
+                </button>
+                <Draggable />
             </div>
         )
     }

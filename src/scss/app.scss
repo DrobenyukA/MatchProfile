@@ -1,39 +1,5 @@
-*{
-  box-sizing: border-box;
-}
+@import "partials/normalize";
+@import "partials/buttons";
 
-html{
-  font-family:sans-serif;
-  font-size:14px;
-}
-
-.container{
-  width:100%;
-  max-width:500px;
-  margin: 0 auto;
-}
-
-.profile{
-  margin-bottom:15px;
-  padding: 15px;
-  background: transparentize(#ccc, .9);
-  border:1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  h4{
-    margin-top: 0;
-    margin-bottom: 5px;
-  }
-  p{
-    margin:0;
-  }
-}
-
-.item.preview{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-width:250px;
-
-}
+@import "components/MatchProfile.styles";
+@import "components/Profile.styles";

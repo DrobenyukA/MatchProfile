@@ -47,6 +47,7 @@
     "immutability-helper": "^2.4.0",
     "node-sass": "^4.6.0",
     "postcss-loader": "^2.0.8",
+    "react-svg-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.4.1",

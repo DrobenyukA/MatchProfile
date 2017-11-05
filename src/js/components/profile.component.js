@@ -6,6 +6,7 @@ import {DragSource, DropTarget} from 'react-dnd';
 import TYPES from "../constants/types.constants";
 import PROFILES from "../constants/profiles.constants";
 
+import BurgerSVG from "../../assets/dragger.svg";
 
 /**
  * Specifies the drag source contract.
@@ -18,7 +19,8 @@ const profileSource = {
             index: props.index,
             title: props.title,
             description: props.description,
-            category: props.category
+            category: props.category,
+            length: props.length
         };
     },
     /**
@@ -71,16 +73,26 @@ const profileTarget = {
             return
         }
 
+
+        /**
+         * RULE:
+         * prevent the replacing of last item from list
+         */
+        if (dragged.length === 1){
+            return
+        }
+
         // Update position of element in lists
         props.onMove(dragged, hovered);
 
         // avoid expensive index searches.
         monitor.getItem().index = hovered.index;
 
-        // replace the category name in item and correct index
+        // replace the category name in profile and setting correct index of new category list
         if (dragged.category !== hovered.category) {
             monitor.getItem().category = hovered.category;
-            monitor.getItem().index = hovered.length ? hovered.length : PROFILES.FIRST_PLACE;
+            monitor.getItem().index = hovered.category === PROFILES.ACTIVE ? hovered.length : PROFILES.FIRST_PLACE;
+            console.log("monitor", monitor.getItem().index)
         }
 
     }
@@ -98,19 +110,29 @@ const profileTarget = {
 }))
 
 class Profile extends Component {
-    constructor(props) {
-        super(props)
-    }
 
+    getPriority(){
+        const {category, index} =  this.props;
+        return category === PROFILES.ACTIVE ?
+            <span className="priority">{index + 1}</span> : null;
+
+    }
     render() {
         const {title, description, connectDragSource, connectDropTarget, isDragging} = this.props;
-        const styles = isDragging ? {borderColor: "red", cursor: "move"} : {};
+        const classNames = isDragging ? "profile placeholder" : "profile" ;
         return connectDragSource(
             connectDropTarget(
-                <div className="profile" style={styles}>
-                    <h4>{title}</h4>
-                    <p>{description}</p>
-                    <button>menu</button>
+                <div className={classNames}>
+                    {this.getPriority()}
+                    <div className="wrapper">
+                        <div className="content">
+                            <h4>{title}</h4>
+                            <p>{description}</p>
+                        </div>
+                        <div className="control">
+                            <BurgerSVG />
+                        </div>
+                    </div>
                 </div>
             )
         )
