@@ -92,7 +92,6 @@ const profileTarget = {
         if (dragged.category !== hovered.category) {
             monitor.getItem().category = hovered.category;
             monitor.getItem().index = hovered.category === PROFILES.ACTIVE ? hovered.length : PROFILES.FIRST_PLACE;
-            console.log("monitor", monitor.getItem().index)
         }
 
     }

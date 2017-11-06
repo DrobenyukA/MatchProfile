@@ -21,6 +21,7 @@ export default class Container extends Component {
 
         }
     }
+
     addProfile = () => console.log("Add profile");
 
     submitProfile = () => console.log("Submit profile");

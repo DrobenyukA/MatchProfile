@@ -24,12 +24,12 @@ export default {
 
         },
         {
-            id: 5,
+            id: 6,
             type: "Surprise me",
             tags: null
         },
         {
-            id: 6,
+            id: 5,
             type: "Growth hacker",
             tags: ["Startup", "25-35 years old"]
         }
